@@ -1,7 +1,7 @@
 package com.rookie.stack.redis.mq;
 
 import cn.hutool.json.JSONUtil;
-import com.rookie.stack.redis.mq.domain.dto.Order;
+import com.rookie.stack.redis.common.domain.dto.Order;
 import com.rookie.stack.redis.mq.process.OrderProcessor;
 import com.rookie.stack.redis.mq.service.OrderQueueService;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package com.rookie.stack.redis.mq.domain.dto;
+package com.rookie.stack.redis.common.domain.dto;
 
 import lombok.Data;
 

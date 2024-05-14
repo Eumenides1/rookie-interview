@@ -1,6 +1,6 @@
 package com.rookie.stack.redis.mq.controller;
 
-import com.rookie.stack.redis.mq.domain.dto.Order;
+import com.rookie.stack.redis.common.domain.dto.Order;
 import com.rookie.stack.redis.mq.service.OrderQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

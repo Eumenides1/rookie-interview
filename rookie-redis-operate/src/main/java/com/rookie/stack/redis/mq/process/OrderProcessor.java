@@ -1,6 +1,6 @@
 package com.rookie.stack.redis.mq.process;
 
-import com.rookie.stack.redis.mq.domain.dto.Order;
+import com.rookie.stack.redis.common.domain.dto.Order;
 import com.rookie.stack.redis.mq.service.OrderQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
