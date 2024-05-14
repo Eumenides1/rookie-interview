@@ -17,13 +17,15 @@ public class SessionController {
 
     @GetMapping("/set")
     public String setSessionAttribute(HttpSession session) {
-        session.setAttribute("testAttribute", "testValue");
+        String sessionId=session.getId();
+        session.setAttribute("id",sessionId);
+        session.setAttribute("name","rookie");
         return "Attribute set in session";
     }
 
     @GetMapping("/get")
     public String getSessionAttribute(HttpSession session) {
-        return "Attribute from session: " + session.getAttribute("testAttribute");
+        return "Attribute from session: " + session.getAttribute("name");
     }
 }
 

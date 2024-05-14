@@ -10,8 +10,22 @@ spring:
     # Redis服务器端口号
     port: ${rookie-redis.redis.port}
     # 使用的数据库索引，默认是0
-    database: 0
+    database: 1
     # 连接超时时间
     timeout: 1800000
     # 设置密码
     password: ${rookie-redis.redis.password}
+    # 连接池 lettuce 的配置
+    lettuce:
+      pool:
+        max-active: 100
+        min-idle: 10
+        max-wait: 100000
+
+  # 配置session的相关信息
+  session:
+    store-type: redis  # 配置存储的类型
+    timeout: 3600  # 配置过期时间
+    redis:
+      flush-mode: on_save # 保存时刷新
+      namespace: springSession # 命令空间

@@ -1,17 +1,14 @@
 package com.rookie.stack.redis.session.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.alibaba.fastjson.parser.ParserConfig;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.session.data.redis.RedisOperationsSessionRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author eumenides
@@ -22,22 +19,15 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableRedisHttpSession
 public class RedisSessionConfig {
 
-    @Value("${spring.redis.host}")
-    private String redisHost;
-
-    @Value("${spring.redis.port}")
-    private int redisPort;
-
-    @Value("${spring.redis.password}")
-    private String redisPassword;
-
     @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
-        LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory();
-        connectionFactory.setHostName(redisHost);
-        connectionFactory.setPort(redisPort);
-        connectionFactory.setPassword(redisPassword);
-        return connectionFactory;
+    public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
+        // 使用 FastJsonRedisSerializer 来序列化和反序列化redis 的 value的值
+        FastJsonRedisSerializer<Object> serializer = new FastJsonRedisSerializer<>(Object.class);
+        ParserConfig.getGlobalInstance().addAccept("com.muzz");
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setCharset(StandardCharsets.UTF_8);
+        serializer.setFastJsonConfig(fastJsonConfig);
+        return serializer;
     }
 
 }
